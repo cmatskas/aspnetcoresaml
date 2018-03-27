@@ -39,9 +39,8 @@ namespace WebApplication1
             })
             .AddWsFederation(options =>
             {
-                // add your details accordingly
-                options.Wtrealm = "your app details"; 
-                options.MetadataAddress = "your SAML metadata endpoint";
+                options.Wtrealm = "https://microsoft.onmicrosoft.com/5b60c247-398e-4c00-9ba4-a8a87d22d4d1";
+                options.MetadataAddress = "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/federationmetadata/2007-06/federationmetadata.xml";
             })
             .AddCookie();
 

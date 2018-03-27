@@ -18,38 +18,24 @@ namespace WebApplication1.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Login(string returnUrl = null, string test = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            
-            //these 2 don't work
-            await HttpContext.ChallengeAsync();
-            await HttpContext.AuthenticateAsync();
-            
-            return RedirectToAction("index", "home");
-        }
-
-        [Authorize]
-        public IActionResult LoginTest()
-        {
-            //this works
-            return RedirectToAction("Index", "Home");
+            var redirectUrl = Url.Content("~/");
+            return Challenge(
+                new AuthenticationProperties { RedirectUri = redirectUrl },
+                WsFederationDefaults.AuthenticationScheme);
         }
 
         [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            await HttpContext.SignOutAsync(WsFederationDefaults.AuthenticationScheme, new AuthenticationProperties());
-
-            return NoContent();
+            var redirectUrl = Url.Content("~/");
+            return SignOut(
+                new AuthenticationProperties { RedirectUri = redirectUrl },
+                WsFederationDefaults.AuthenticationScheme);
         }
     }
 }
