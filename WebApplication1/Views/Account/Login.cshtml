@@ -1,0 +1,22 @@
+﻿
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h4>Use Azure AD with SAML for Single Sign On</h4>
+            <hr />
+            <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                <div>
+                    <p>
+                        <button type="submit" class="btn btn-default" name="provider" value="AAD SAML" title="Log in using your AAD SAML account">AAD SAML</button>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
