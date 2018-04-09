@@ -4,10 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.WsFederation;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
 
 namespace WebApplication1
 {
